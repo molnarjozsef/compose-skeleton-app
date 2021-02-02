@@ -12,8 +12,10 @@ import androidx.navigation.Navigation
 import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.databinding.MainFragmentBinding
 import com.jozsefmolnar.newskeletonapp.ui.model.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
