@@ -1,4 +1,4 @@
-package com.example.newskeletonapp.ui
+package com.example.newskeletonapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
