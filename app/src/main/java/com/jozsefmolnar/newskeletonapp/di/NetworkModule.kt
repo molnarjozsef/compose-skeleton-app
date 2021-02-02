@@ -1,5 +1,6 @@
 package com.jozsefmolnar.newskeletonapp.di
 
+import com.jozsefmolnar.newskeletonapp.service.FooService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,4 +37,8 @@ object NetworkModule {
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .build()
+
+    @Provides
+    fun provideApiService(retrofit: Retrofit): FooService =
+        retrofit.create(FooService::class.java)
 }
