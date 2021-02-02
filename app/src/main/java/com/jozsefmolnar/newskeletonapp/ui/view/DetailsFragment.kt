@@ -1,4 +1,4 @@
-package com.example.newskeletonapp.ui.view
+package com.jozsefmolnar.newskeletonapp.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.newskeletonapp.R
-import com.example.newskeletonapp.ui.model.DetailsViewModel
+import com.jozsefmolnar.newskeletonapp.R
+import com.jozsefmolnar.newskeletonapp.ui.model.DetailsViewModel
 
 class DetailsFragment : Fragment() {
 

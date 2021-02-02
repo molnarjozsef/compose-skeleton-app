@@ -1,4 +1,4 @@
-package com.example.newskeletonapp.ui.view
+package com.jozsefmolnar.newskeletonapp.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.example.newskeletonapp.R
-import com.example.newskeletonapp.ui.model.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.jozsefmolnar.newskeletonapp.R
+import com.jozsefmolnar.newskeletonapp.ui.model.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {

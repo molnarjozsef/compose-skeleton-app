@@ -1,4 +1,4 @@
-package com.example.newskeletonapp.ui.model
+package com.jozsefmolnar.newskeletonapp.ui.model
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

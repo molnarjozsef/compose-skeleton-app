@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.newskeletonapp.ui.view.DetailsFragment"
+        android:name="com.jozsefmolnar.newskeletonapp.ui.view.DetailsFragment"
         android:label="details_fragment"
         tools:layout="@layout/details_fragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.newskeletonapp.ui.view.MainFragment"
+        android:name="com.jozsefmolnar.newskeletonapp.ui.view.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action

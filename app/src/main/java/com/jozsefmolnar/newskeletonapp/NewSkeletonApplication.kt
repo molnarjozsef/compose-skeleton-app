@@ -1,4 +1,4 @@
-package com.example.newskeletonapp
+package com.jozsefmolnar.newskeletonapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
