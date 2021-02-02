@@ -1,4 +1,4 @@
-package com.example.newskeletonapp.ui.main
+package com.example.newskeletonapp.ui.model
 
 import androidx.lifecycle.ViewModel
 
