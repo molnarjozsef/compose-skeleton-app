@@ -20,10 +20,20 @@ class MainViewModel @Inject constructor(
     val message: LiveData<String>
         get() = _message
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     init {
         viewModelScope.launch {
-            repository.getLatestNews()
-                .map { it.first().title }
+            _loading.value = true
+            repository.fetchLatestNews()
+            _loading.value = false
+        }
+
+        viewModelScope.launch {
+            repository.getCachedNews()
+                .map { it.firstOrNull()?.title ?: "No internet connection" }
                 .collect { _message.value = it }
         }
     }
