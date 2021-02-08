@@ -20,6 +20,9 @@ class MainRepository @Inject constructor(
     fun getCachedNews(): Flow<List<Article>> = articleDao.getAll()
         .map { dataModelMapper.mapToDomainModelList(it) }
 
+    fun getCachedArticle(id: Int): Flow<Article?> = articleDao.get(id)
+        .map { articleDataModel -> articleDataModel?.let { dataModelMapper.mapToDomainModel(it) } }
+
     suspend fun fetchLatestNews() {
         try {
             val latestNews = newsService.getLatestNews()

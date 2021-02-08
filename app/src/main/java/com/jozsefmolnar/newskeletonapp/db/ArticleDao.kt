@@ -19,6 +19,9 @@ interface ArticleDao {
     @Query("SELECT * FROM articles")
     fun getAll(): Flow<List<ArticleDataModel>>
 
+    @Query("SELECT * FROM articles WHERE id LIKE :id")
+    fun get(id: Int): Flow<ArticleDataModel?>
+
     @Query("DELETE FROM articles")
     suspend fun clearAll()
 }
