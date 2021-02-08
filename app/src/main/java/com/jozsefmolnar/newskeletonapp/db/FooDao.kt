@@ -19,6 +19,9 @@ interface FooDao {
     @Query("SELECT * FROM items")
     fun getAll(): Flow<List<FooDataModel>>
 
+    @Query("SELECT * FROM items WHERE id LIKE :id")
+    fun get(id: Int): Flow<FooDataModel?>
+
     @Query("DELETE FROM items")
     suspend fun clearAll()
 }

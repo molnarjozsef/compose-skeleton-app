@@ -17,8 +17,11 @@ class MainRepository @Inject constructor(
     private val fooDataModelMapper: FooDataModelMapper,
 ) {
 
-    fun getCachedFoo(): Flow<List<Foo>> = fooDao.getAll()
+    fun getCachedItems(): Flow<List<Foo>> = fooDao.getAll()
         .map { fooDataModelMapper.mapToDomainModelList(it) }
+
+    fun getCachedFoo(id: Int): Flow<Foo?> = fooDao.get(id)
+        .map { articleDataModel -> articleDataModel?.let { fooDataModelMapper.mapToDomainModel(it) } }
 
     suspend fun fetchLatestFoo() {
         try {

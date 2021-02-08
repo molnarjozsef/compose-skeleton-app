@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            repository.getCachedFoo()
+            repository.getCachedItems()
                 .map { it.firstOrNull()?.name ?: "No internet connection" }
                 .collect { _message.value = it }
         }
