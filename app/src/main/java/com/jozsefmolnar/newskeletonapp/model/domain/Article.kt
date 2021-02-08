@@ -1,6 +1,7 @@
 package com.jozsefmolnar.newskeletonapp.model.domain
 
 data class Article(
+    val id: Int? = null,
     val title: String,
     val description: String?,
     val url: String,

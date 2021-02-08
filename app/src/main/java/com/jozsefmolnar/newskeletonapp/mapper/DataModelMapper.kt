@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class DataModelMapper @Inject constructor() : ModelMapper<ArticleDataModel, Article> {
     override fun mapToDomainModel(model: ArticleDataModel) = Article(
+        id = model.id!!,
         title = model.title,
         description = model.description,
         url = model.url,
