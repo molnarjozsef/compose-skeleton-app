@@ -2,15 +2,16 @@ package com.jozsefmolnar.newskeletonapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.ui.model.MainItemViewModel
 import javax.inject.Inject
-
 
 class ArticleAdapter @Inject constructor() : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
@@ -40,6 +41,11 @@ class ArticleAdapter @Inject constructor() : RecyclerView.Adapter<ArticleAdapter
         holder.binding.apply {
             setVariable(BR.vm, getItemViewModel(item))
             executePendingBindings()
+        }
+
+        holder.itemView.setOnClickListener {
+            val bundle = bundleOf("articleId" to item.id)
+            it.findNavController().navigate(R.id.action_mainFragment_to_detailsFragment, bundle)
         }
     }
 

@@ -18,6 +18,11 @@
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment">
+            <argument
+                android:name="articleId"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
     </fragment>
 </navigation>
