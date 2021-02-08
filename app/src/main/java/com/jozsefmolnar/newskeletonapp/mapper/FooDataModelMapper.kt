@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class FooDataModelMapper @Inject constructor() : ModelMapper<FooDataModel, Foo> {
     override fun mapToDomainModel(model: FooDataModel) = Foo(
+        id = model.id!!,
         name = model.name
     )
 
