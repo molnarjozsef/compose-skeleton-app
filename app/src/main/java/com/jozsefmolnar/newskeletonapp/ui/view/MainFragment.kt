@@ -51,7 +51,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ArticleAdapter()
+        recyclerView.adapter = adapter
 
         val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         ContextCompat.getDrawable(requireContext(), R.drawable.main_list_divider)?.let {
