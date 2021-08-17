@@ -12,7 +12,6 @@ import androidx.navigation.Navigation
 import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.databinding.MainFragmentBinding
 import com.jozsefmolnar.newskeletonapp.ui.model.MainViewModel
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -41,10 +40,4 @@ class MainFragment : Fragment() {
         navController = Navigation.findNavController(view)
     }
 
-    override fun onResume() {
-        super.onResume()
-        message.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_detailsFragment)
-        }
-    }
 }
