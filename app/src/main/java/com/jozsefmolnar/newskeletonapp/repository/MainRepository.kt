@@ -23,7 +23,7 @@ class MainRepository @Inject constructor(
         .map { fooDataModelMapper.mapToDomainModelList(it) }
 
     fun getCachedFoo(id: Int): Flow<Foo?> = fooDao.get(id)
-        .map { articleDataModel -> articleDataModel?.let { fooDataModelMapper.mapToDomainModel(it) } }
+        .map { fooDataModel -> fooDataModel?.let { fooDataModelMapper.mapToDomainModel(it) } }
 
     suspend fun fetchLatestFoo() {
         withContext(Dispatchers.IO) {
