@@ -1,42 +1,21 @@
 package com.jozsefmolnar.newskeletonapp.ui.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.jozsefmolnar.newskeletonapp.R
-import com.jozsefmolnar.newskeletonapp.databinding.DetailsFragmentBinding
 import com.jozsefmolnar.newskeletonapp.ui.model.DetailsViewModel
+import com.jozsefmolnar.newskeletonapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment() {
+class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment) {
 
-    private val viewModel: DetailsViewModel by viewModels()
+    override val viewModel: DetailsViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        arguments?.getInt("articleId")?.let {
-            viewModel.setArticleId(it)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.getInt(Constants.FOO_ID_KEY)?.let {
+            viewModel.setFooId(it)
         }
-
-        return DataBindingUtil
-            .inflate<DetailsFragmentBinding>(
-                inflater,
-                R.layout.details_fragment,
-                container,
-                false
-            )
-            .apply {
-                vm = viewModel
-                lifecycleOwner = viewLifecycleOwner
-            }
-            .root
-
     }
 }
