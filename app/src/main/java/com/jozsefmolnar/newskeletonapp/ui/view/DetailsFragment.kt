@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.databinding.DetailsFragmentBinding
@@ -13,9 +12,9 @@ import com.jozsefmolnar.newskeletonapp.ui.model.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment() {
+class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment) {
 
-    private val viewModel: DetailsViewModel by viewModels()
+    override val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

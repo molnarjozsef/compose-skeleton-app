@@ -34,18 +34,4 @@ class MainRepository @Inject constructor(
             Timber.e(e)
         }
     }
-
-    suspend fun getLatestNews(): Flow<List<Article>> {
-        try {
-            val latestNews = newsService.getLatestNews()
-            val articles = apiModelMapper.mapToDomainModelList(latestNews.articles)
-            val articleDataModels = dataModelMapper.mapFromDomainModelList(articles)
-            articleDao.clearAll()
-            articleDao.insertAll(articleDataModels)
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
-
-        return articleDao.getAll().map { dataModelMapper.mapToDomainModelList(it) }
-    }
 }
