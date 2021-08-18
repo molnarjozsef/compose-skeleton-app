@@ -87,4 +87,7 @@ dependencies {
 
     // SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    // BindingCollectionAdapter
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0"
 }
