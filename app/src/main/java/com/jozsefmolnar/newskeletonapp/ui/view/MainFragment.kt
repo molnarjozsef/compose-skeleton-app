@@ -12,9 +12,11 @@ import com.jozsefmolnar.newskeletonapp.model.domain.Foo
 import com.jozsefmolnar.newskeletonapp.ui.model.MainViewModel
 import com.jozsefmolnar.newskeletonapp.util.Constants
 import com.jozsefmolnar.newskeletonapp.util.OnItemClickListener
+import dagger.hilt.android.AndroidEntryPoint
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 
+@AndroidEntryPoint
 class MainFragment :
     BaseFragment<MainViewModel>(R.layout.main_fragment),
     OnItemClickListener<Foo> {
