@@ -12,7 +12,7 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val items = repository.getCachedItems()
-        .asStateFlow(viewModelScope)
+        .asStateFlow()
 
     fun fetchLatestFoo() {
         viewModelScope.launch {
