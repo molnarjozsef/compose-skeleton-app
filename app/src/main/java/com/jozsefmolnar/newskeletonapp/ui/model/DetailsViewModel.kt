@@ -19,7 +19,7 @@ class DetailsViewModel @Inject constructor(
     private val fooId = MutableStateFlow<Int?>(null)
 
     val foo = fooId.filterNotNull()
-        .flatMapLatest { fooStore.getCachedFoo(it) }
+        .flatMapLatest { fooStore.getFoo(it) }
         .asStateFlow()
 
     fun setFooId(id: Int) {

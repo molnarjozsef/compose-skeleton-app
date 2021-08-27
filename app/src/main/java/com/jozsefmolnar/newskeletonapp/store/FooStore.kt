@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface FooStore {
 
-    fun getCachedItems(): Flow<List<Foo>>
+    fun getFooList(): Flow<List<Foo>>
 
-    fun getCachedFoo(id: Int): Flow<Foo?>
+    fun getFoo(id: Int): Flow<Foo?>
 
 }

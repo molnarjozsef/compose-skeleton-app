@@ -16,7 +16,7 @@ class DefaultFooAction @Inject constructor(
     private val fooDataModelMapper: FooDataModelMapper,
 ) : FooAction {
 
-    override suspend fun fetchLatestFoo() {
+    override suspend fun refreshFooList() {
         withContext(Dispatchers.IO) {
             try {
                 val latestFoo = fooService.getLatestFoo()

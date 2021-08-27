@@ -12,10 +12,10 @@ class DefaultFooStore @Inject constructor(
     private val fooDataModelMapper: FooDataModelMapper,
 ) : FooStore {
 
-    override fun getCachedItems(): Flow<List<Foo>> = fooDao.getAll()
+    override fun getFooList(): Flow<List<Foo>> = fooDao.getAll()
         .map { fooDataModelMapper.mapToDomainModelList(it) }
 
-    override fun getCachedFoo(id: Int): Flow<Foo?> = fooDao.get(id)
+    override fun getFoo(id: Int): Flow<Foo?> = fooDao.get(id)
         .map { fooDataModel -> fooDataModel?.let { fooDataModelMapper.mapToDomainModel(it) } }
 
 }

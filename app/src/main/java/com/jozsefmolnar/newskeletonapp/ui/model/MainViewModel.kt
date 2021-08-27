@@ -13,13 +13,13 @@ class MainViewModel @Inject constructor(
     private val fooAction: FooAction,
 ) : BaseViewModel() {
 
-    val items = fooStore.getCachedItems()
+    val items = fooStore.getFooList()
         .asStateFlow()
 
     fun fetchLatestFoo() {
         viewModelScope.launch {
             trackProgress {
-                fooAction.fetchLatestFoo()
+                fooAction.refreshFooList()
             }
         }
     }
