@@ -1,23 +1,25 @@
 package com.jozsefmolnar.newskeletonapp.ui.model
 
 import androidx.lifecycle.viewModelScope
-import com.jozsefmolnar.newskeletonapp.repository.MainRepository
+import com.jozsefmolnar.newskeletonapp.action.FooAction
+import com.jozsefmolnar.newskeletonapp.store.FooStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: MainRepository,
+    fooStore: FooStore,
+    private val fooAction: FooAction,
 ) : BaseViewModel() {
 
-    val items = repository.getCachedItems()
+    val items = fooStore.getFooList()
         .asStateFlow()
 
     fun fetchLatestFoo() {
         viewModelScope.launch {
             trackProgress {
-                repository.fetchLatestFoo()
+                fooAction.refreshFooList()
             }
         }
     }
