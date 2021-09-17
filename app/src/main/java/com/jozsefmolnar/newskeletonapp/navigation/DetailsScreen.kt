@@ -9,9 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
+import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
 import com.skydoves.landscapist.glide.GlideImage
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -28,4 +31,10 @@ fun DetailsScreen(item: StateFlow<Article?>) {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun DetailsPreview() {
+    DetailsScreen(item = MutableStateFlow(ArticleGenerator.generateArticle()))
 }
