@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "New Skeleton App"
+rootProject.name = "Compose Skeleton App"

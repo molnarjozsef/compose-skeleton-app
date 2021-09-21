@@ -15,27 +15,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
-import com.jozsefmolnar.newskeletonapp.navigation.Screen
 
 @Composable
-fun NewsHomeContent(navController: NavController, articles: List<Article>) {
+fun NewsHomeContent(
+    articles: List<Article>,
+    showDetails: (Int) -> Unit
+) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {
         items(
             items = articles,
             itemContent = {
-                NewsListItem(article = it, navController = navController)
+                NewsListItem(
+                    article = it,
+                    showDetails = showDetails
+                )
             })
     }
 }
 
 @Composable
-fun NewsListItem(navController: NavController, article: Article) {
+fun NewsListItem(
+    article: Article,
+    showDetails: (Int) -> Unit
+) {
     Row(modifier = Modifier.clickable {
-        navController.navigate(Screen.DetailsScreen.withArgs(article.id!!))
+        article.id?.let { showDetails(it) }
     }) {
         Column(modifier = Modifier.padding(8.dp)) {
             Text(text = article.title, style = TextStyle(fontSize = 20.sp))

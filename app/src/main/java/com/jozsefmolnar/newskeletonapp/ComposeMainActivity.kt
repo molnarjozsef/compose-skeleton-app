@@ -6,12 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.jozsefmolnar.newskeletonapp.navigation.RouteManager
+import com.jozsefmolnar.newskeletonapp.navigation.screen.Navigation
 import com.jozsefmolnar.newskeletonapp.ui.model.MainViewModel
 import com.jozsefmolnar.newskeletonapp.ui.theme.NewSkeletonAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ComposeMainActivity() : ComponentActivity() {
+
+    @Inject
+    lateinit var routeManager: RouteManager
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -19,7 +25,7 @@ class ComposeMainActivity() : ComponentActivity() {
         super.onCreate(savedInstanceState)
         viewModel.fetchLatestNews()
         setContent {
-            Navigation()
+            Navigation(routeManager)
         }
     }
 }
@@ -29,6 +35,5 @@ class ComposeMainActivity() : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     NewSkeletonAppTheme {
-        Navigation()
     }
 }

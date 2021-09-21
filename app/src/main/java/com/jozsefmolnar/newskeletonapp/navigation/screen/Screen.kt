@@ -1,4 +1,4 @@
-package com.jozsefmolnar.newskeletonapp.navigation
+package com.jozsefmolnar.newskeletonapp.navigation.screen
 
 sealed class Screen(val route: String) {
     object MainScreen : Screen("main_screen")
