@@ -8,7 +8,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
-import com.jozsefmolnar.newskeletonapp.navigation.screen.ScreenWithViewModel
 
 fun <T : Route> NavGraphBuilder.composable(
     factory: Route.Factory<T>,

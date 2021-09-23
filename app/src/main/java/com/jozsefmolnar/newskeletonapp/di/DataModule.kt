@@ -3,6 +3,7 @@ package com.jozsefmolnar.newskeletonapp.di
 import android.content.Context
 import androidx.room.Room
 import com.jozsefmolnar.newskeletonapp.db.ArticleDatabase
+import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +27,8 @@ object DataModule {
     @Singleton
     @Provides
     fun provideArticleDao(articleDatabase: ArticleDatabase) = articleDatabase.articleDao()
+
+    @Provides
+    @Singleton
+    fun provideSimpleNavigator() = SimpleNavigator()
 }
