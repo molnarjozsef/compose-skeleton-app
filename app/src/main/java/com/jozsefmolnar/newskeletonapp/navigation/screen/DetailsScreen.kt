@@ -1,7 +1,5 @@
 package com.jozsefmolnar.newskeletonapp.navigation.screen
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,13 +13,12 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -109,11 +106,10 @@ fun DetailsHeader(article: Article) {
 
 @Composable
 fun DetailsOpenBrowserButton(url: String) {
-    val context = LocalContext.current
-    val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(url)) }
+    val uriHandler = LocalUriHandler.current
     Box(modifier = Modifier.padding(16.dp)) {
         Button(
-            onClick = { context.startActivity(intent) },
+            onClick = { uriHandler.openUri(url) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Open full article")
