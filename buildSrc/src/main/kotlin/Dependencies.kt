@@ -100,6 +100,7 @@ object Libraries {
 
     object Common {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
+        const val coilCompose = "io.coil-kt:coil-compose:1.3.2"
     }
 
     object Test {

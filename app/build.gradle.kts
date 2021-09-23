@@ -84,6 +84,9 @@ dependencies {
     implementation(Libraries.Room.ktx)
     kapt(Libraries.Room.annotationProcessor)
 
+    // Coil
+    implementation(Libraries.Common.coilCompose)
+    implementation(Libraries.AndroidX.lifecycleScope)
 
     // Tests
     testImplementation(Libraries.Test.junit)
