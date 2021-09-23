@@ -2,8 +2,9 @@ plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    id(BuildPlugins.kaptPlugin)
+    id(BuildPlugins.hiltPlugin)
+    id(BuildPlugins.versionsPlugin) version "0.39.0"
 }
 
 android {
@@ -92,4 +93,17 @@ dependencies {
     testImplementation(Libraries.Test.junit)
     androidTestImplementation(Libraries.Test.Android.junit)
 
+}
+
+fun String.isNonStable(): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(this)
+    return isStable.not()
+}
+
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+    rejectVersionIf {
+        candidate.version.isNonStable() && !currentVersion.isNonStable()
+    }
 }

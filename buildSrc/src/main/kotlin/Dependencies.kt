@@ -3,9 +3,13 @@ object BuildPlugins {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.2"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
+    const val kaptPlugin = "kotlin-kapt"
+    const val hiltPlugin = "dagger.hilt.android.plugin"
+    const val versionsPlugin = "com.github.ben-manes.versions"
 
 }
 
@@ -20,10 +24,10 @@ object Versions {
     const val targetsdk = 31
 
     const val kotlin = "1.5.21"
-    const val coroutines = "1.5.1"
+    const val coroutines = "1.5.2"
 
     const val compose = "1.0.2"
-    const val lifecycle = "2.4.0-alpha03"
+    const val lifecycle = "2.4.0-beta01"
 
 
     const val hilt = "2.38.1"
@@ -64,7 +68,7 @@ object Libraries {
         const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
 
         const val activity = "androidx.activity:activity-compose:1.3.1"
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha04"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-beta01"
 
         object Ui {
             const val material = "androidx.compose.material:material:${Versions.compose}"
@@ -72,7 +76,7 @@ object Libraries {
         }
 
         object Navigation {
-            const val navigation = "androidx.navigation:navigation-compose:2.4.0-alpha08"
+            const val navigation = "androidx.navigation:navigation-compose:2.4.0-alpha09"
             const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         }
     }

@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 import com.jozsefmolnar.newskeletonapp.navigation.screen.DetailsScreen
 import com.jozsefmolnar.newskeletonapp.navigation.screen.MainScreen
 import com.jozsefmolnar.newskeletonapp.ui.model.DetailsViewModel
