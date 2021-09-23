@@ -14,7 +14,7 @@ class DetailsViewModel @Inject constructor(
     private val repository: MainRepository,
 ) : BaseViewModel() {
 
-    var articleId = MutableStateFlow<Int?>(null)
+    private var articleId = MutableStateFlow<Int?>(null)
 
     val article = articleId.filterNotNull()
         .flatMapLatest { repository.getCachedArticle(it) }
