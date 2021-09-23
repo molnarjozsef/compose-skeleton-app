@@ -13,8 +13,4 @@ class SimpleNavigator {
         _sharedFlow.tryEmit(path)
     }
 
-    enum class NavTarget(val label: String) {
-        Home("Home"),
-        Detail("ArticleDetails/{articleId}")
-    }
 }

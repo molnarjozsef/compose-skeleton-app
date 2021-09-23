@@ -1,26 +1,18 @@
 package com.jozsefmolnar.newskeletonapp.di
 
-import com.jozsefmolnar.newskeletonapp.navigation.Navigator
-import com.jozsefmolnar.newskeletonapp.navigation.RouteManager
 import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
-import com.jozsefmolnar.newskeletonapp.navigation.impl.NavigatorImpl
-import com.jozsefmolnar.newskeletonapp.navigation.impl.RouteManagerImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
 @InstallIn(SingletonComponent::class)
-abstract class NavigationModule {
+@Module
+object NavigationModule {
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun NavigatorImpl.bindNavigator(): Navigator
+    fun provideNavigator() = SimpleNavigator()
 
-    @Binds
-    @Singleton
-    abstract fun RouteManagerImpl.bindRouteManager(): RouteManager
 }

@@ -30,9 +30,7 @@ object Versions {
 
     const val room = "2.3.0"
 
-    const val okhttp = "4.9.1"
     const val retrofit = "2.9.0"
-    const val moshi = "1.12.0"
 
     const val testRunner = "1.3.0"
 }
@@ -48,7 +46,6 @@ object Libraries {
     }
 
     object AndroidX {
-        const val annotation = "androidx.annotation:annotation:1.2.0"
         const val appcompat = "androidx.appcompat:appcompat:1.3.1"
         const val core = "androidx.core:core-ktx:1.6.0"
         const val lifecycleScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
@@ -103,28 +100,16 @@ object Libraries {
 
     object Common {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
-
     }
 
     object Test {
         const val junit = "junit:junit:4.13.2"
-        const val mockk = "io.mockk:mockk:1.12.0"
-        const val mockkAndroid = "io.mockk:mockk-android:1.11.0"
-        const val truth = "com.google.truth:truth:1.1.3"
-        const val timberRule = "net.lachlanmckee:timber-junit-rule:1.0.1"
-        const val robolectric = "org.robolectric:robolectric:4.6.1"
-        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
-
-        // note: we must revert to and older version to be able to run AndroidTests on older than API26 targets
-        const val objenisis = "org.objenesis:objenesis:2.6"
 
         object Android {
             const val junit = "androidx.test.ext:junit-ktx:1.1.3"
             const val core = "androidx.arch.core:core-testing:2.1.0"
             const val runner = "androidx.test:runner:${Versions.testRunner}"
             const val rules = "androidx.test:rules:${Versions.testRunner}"
-            const val orchestrator = "androidx.test:orchestrator:${Versions.testRunner}"
-            const val truth = "androidx.test.ext:truth:1.4.0"
         }
 
         object Kotlin {

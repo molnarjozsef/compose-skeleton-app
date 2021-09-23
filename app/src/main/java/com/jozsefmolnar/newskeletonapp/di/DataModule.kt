@@ -3,7 +3,6 @@ package com.jozsefmolnar.newskeletonapp.di
 import android.content.Context
 import androidx.room.Room
 import com.jozsefmolnar.newskeletonapp.db.ArticleDatabase
-import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,9 +17,11 @@ object DataModule {
     @Singleton
     @Provides
     fun provideArticleDatabase(@ApplicationContext context: Context): ArticleDatabase =
-        Room.databaseBuilder(context,
+        Room.databaseBuilder(
+            context,
             ArticleDatabase::class.java,
-            ArticleDatabase.DATABASE_NAME)
+            ArticleDatabase.DATABASE_NAME
+        )
             .fallbackToDestructiveMigration()
             .build()
 
@@ -28,7 +29,4 @@ object DataModule {
     @Provides
     fun provideArticleDao(articleDatabase: ArticleDatabase) = articleDatabase.articleDao()
 
-    @Provides
-    @Singleton
-    fun provideSimpleNavigator() = SimpleNavigator()
 }
