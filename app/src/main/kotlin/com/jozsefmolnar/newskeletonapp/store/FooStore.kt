@@ -8,5 +8,4 @@ interface FooStore {
     fun getFooList(): Flow<List<Foo>>
 
     fun getFoo(id: Int): Flow<Foo?>
-
 }

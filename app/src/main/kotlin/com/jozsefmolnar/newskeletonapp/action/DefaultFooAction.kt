@@ -24,5 +24,4 @@ class DefaultFooAction @Inject constructor(
             }
         }
     }
-
 }

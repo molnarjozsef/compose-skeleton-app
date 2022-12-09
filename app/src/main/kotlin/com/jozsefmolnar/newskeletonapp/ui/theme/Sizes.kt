@@ -2,7 +2,6 @@ package com.jozsefmolnar.newskeletonapp.ui.theme
 
 import androidx.compose.ui.unit.dp
 
-
 private val SizeBase = 8.dp
 
 object Sizes {

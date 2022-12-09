@@ -9,9 +9,8 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class ActionModule {
+interface ActionModule {
 
     @Binds
-    abstract fun bindFooAction(fooAction: DefaultFooAction): FooAction
-
+    fun bindFooAction(fooAction: DefaultFooAction): FooAction
 }

@@ -17,5 +17,4 @@ class DefaultFooStore @Inject constructor(
 
     override fun getFoo(id: Int): Flow<Foo?> = fooDao.get(id)
         .map { fooDataModel -> fooDataModel?.toDomainModel() }
-
 }
