@@ -17,13 +17,16 @@ object DataModule {
     @Singleton
     @Provides
     fun provideArticleDatabase(@ApplicationContext context: Context): ArticleDatabase =
-        Room.databaseBuilder(context,
+        Room.databaseBuilder(
+            context,
             ArticleDatabase::class.java,
-            ArticleDatabase.DATABASE_NAME)
+            ArticleDatabase.DATABASE_NAME
+        )
             .fallbackToDestructiveMigration()
             .build()
 
     @Singleton
     @Provides
     fun provideArticleDao(articleDatabase: ArticleDatabase) = articleDatabase.articleDao()
+
 }

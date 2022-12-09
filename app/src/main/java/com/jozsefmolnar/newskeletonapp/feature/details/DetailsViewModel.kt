@@ -1,22 +1,21 @@
-package com.jozsefmolnar.newskeletonapp.ui.model
+package com.jozsefmolnar.newskeletonapp.feature.details
 
 import androidx.lifecycle.viewModelScope
-import com.jozsefmolnar.newskeletonapp.repository.MainRepository
+import com.jozsefmolnar.newskeletonapp.repository.NewsRepository
+import com.jozsefmolnar.newskeletonapp.ui.model.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val repository: MainRepository,
+    private val repository: NewsRepository,
 ) : BaseViewModel() {
 
-    var articleId = MutableStateFlow<Int?>(null)
+    private var articleId = MutableStateFlow<Int?>(null)
 
     val article = articleId.filterNotNull()
         .flatMapLatest { repository.getCachedArticle(it) }
