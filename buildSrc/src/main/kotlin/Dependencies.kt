@@ -1,6 +1,6 @@
 object BuildPlugins {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.2"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.3.1"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 
@@ -15,7 +15,7 @@ object BuildPlugins {
 
 object AndroidSdk {
     const val min = 23
-    const val compile = 31
+    const val compile = 33
     const val target = compile
 }
 
@@ -23,16 +23,16 @@ object Versions {
     const val minsdk = 23
     const val targetsdk = 31
 
-    const val kotlin = "1.5.21"
-    const val coroutines = "1.5.2"
+    const val kotlin = "1.7.20"
+    const val coroutines = "1.6.4"
 
-    const val compose = "1.0.2"
-    const val lifecycle = "2.4.0-beta01"
+    const val compose = "1.3.1"
+    const val lifecycle = "2.5.1"
 
 
-    const val hilt = "2.38.1"
+    const val hilt = "2.44.2"
 
-    const val room = "2.3.0"
+    const val room = "2.4.3"
 
     const val retrofit = "2.9.0"
 
@@ -50,14 +50,13 @@ object Libraries {
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.3.1"
-        const val core = "androidx.core:core-ktx:1.6.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.5.1"
+        const val core = "androidx.core:core-ktx:1.9.0"
         const val lifecycleScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-        const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
         object Ui {
-            const val material = "com.google.android.material:material:1.4.0"
+            const val material = "com.google.android.material:material:1.7.0"
             const val activity = "androidx.activity:activity-ktx:1.3.1"
         }
     }
@@ -67,8 +66,8 @@ object Libraries {
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
 
-        const val activity = "androidx.activity:activity-compose:1.3.1"
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-beta01"
+        const val activity = "androidx.activity:activity-compose:1.6.1"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
 
         object Ui {
             const val material = "androidx.compose.material:material:${Versions.compose}"
@@ -76,8 +75,8 @@ object Libraries {
         }
 
         object Navigation {
-            const val navigation = "androidx.navigation:navigation-compose:2.4.0-alpha09"
-            const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+            const val navigation = "androidx.navigation:navigation-compose:2.5.3"
+            const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
     }
 
@@ -104,14 +103,14 @@ object Libraries {
 
     object Common {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
-        const val coilCompose = "io.coil-kt:coil-compose:1.3.2"
+        const val coilCompose = "io.coil-kt:coil-compose:2.2.2"
     }
 
     object Test {
         const val junit = "junit:junit:4.13.2"
 
         object Android {
-            const val junit = "androidx.test.ext:junit-ktx:1.1.3"
+            const val junit = "androidx.test.ext:junit-ktx:1.1.4"
             const val core = "androidx.arch.core:core-testing:2.1.0"
             const val runner = "androidx.test:runner:${Versions.testRunner}"
             const val rules = "androidx.test:rules:${Versions.testRunner}"

@@ -4,7 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kaptPlugin)
     id(BuildPlugins.hiltPlugin)
-    id(BuildPlugins.versionsPlugin) version "0.39.0"
+    id(BuildPlugins.versionsPlugin) version "0.44.0"
 }
 
 android {
@@ -35,14 +35,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-//        useIR = true
     }
     buildFeatures {
         dataBinding = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.2"
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 }
 
@@ -53,7 +52,6 @@ dependencies {
     implementation(Libraries.AndroidX.appcompat)
     implementation(Libraries.AndroidX.viewModel)
     implementation(Libraries.AndroidX.lifecycleScope)
-    implementation(Libraries.AndroidX.livedata)
     implementation(Libraries.AndroidX.Ui.material)
 
     implementation(Libraries.Compose.ui)
