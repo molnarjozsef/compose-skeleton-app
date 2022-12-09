@@ -5,10 +5,19 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 class SimpleNavigator {
 
-    private val _sharedFlow = MutableSharedFlow<String>(extraBufferCapacity = 1)
+    private val _sharedFlow = MutableSharedFlow<NavigateEvent>(extraBufferCapacity = 1)
     val sharedFlow = _sharedFlow.asSharedFlow()
 
     fun navigateTo(path: String) {
-        _sharedFlow.tryEmit(path)
+        _sharedFlow.tryEmit(NavigateEvent.NavigateTo(path))
+    }
+
+    fun navigateUp() {
+        _sharedFlow.tryEmit(NavigateEvent.NavigateUp)
+    }
+
+    sealed interface NavigateEvent {
+        object NavigateUp : NavigateEvent
+        data class NavigateTo(val route: String) : NavigateEvent
     }
 }

@@ -20,7 +20,7 @@ fun AppNavHost(
     val navController = androidx.navigation.compose.rememberNavController()
     NavHost(navController = navController, startDestination = Route.MainRoute.route) {
         composable(Route.MainRoute.route) { HomeScreen() }
-        
+
         composable(
             Route.DetailsRoute.route + "/{articleId}",
             arguments = listOf(
@@ -35,15 +35,19 @@ fun AppNavHost(
 
             DetailsScreen(
                 viewModel = viewModel,
-                navigateUp = { }
             )
         }
     }
 
     LaunchedEffect(Unit) {
         simpleNavigator.sharedFlow
-            .onEach {
-                navController.navigate(it)
+            .onEach { navigateEvent ->
+                when (navigateEvent) {
+                    is SimpleNavigator.NavigateEvent.NavigateTo ->
+                        navController.navigate(navigateEvent.route)
+                    SimpleNavigator.NavigateEvent.NavigateUp ->
+                        navController.navigateUp()
+                }
             }
             .launchIn(this)
     }

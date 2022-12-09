@@ -1,6 +1,7 @@
 package com.jozsefmolnar.newskeletonapp.feature.details
 
 import androidx.lifecycle.viewModelScope
+import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import com.jozsefmolnar.newskeletonapp.repository.NewsRepository
 import com.jozsefmolnar.newskeletonapp.ui.model.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val repository: NewsRepository,
+    private val simpleNavigator: SimpleNavigator,
 ) : BaseViewModel() {
 
     private var articleId = MutableStateFlow<Int?>(null)
@@ -26,4 +28,6 @@ class DetailsViewModel @Inject constructor(
             articleId.emit(id)
         }
     }
+
+    fun navigateUp() = simpleNavigator.navigateUp()
 }

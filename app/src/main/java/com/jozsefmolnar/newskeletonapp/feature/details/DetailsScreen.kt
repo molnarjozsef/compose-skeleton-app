@@ -17,7 +17,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
@@ -30,13 +29,12 @@ import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
 @Composable
 fun DetailsScreen(
     viewModel: DetailsViewModel,
-    navigateUp: () -> Unit,
 ) {
     val article by viewModel.article.collectAsStateWithLifecycle()
 
     DetailsScreenContent(
         article = article,
-        navigateUp = navigateUp,
+        navigateUp = viewModel::navigateUp,
     )
 }
 
