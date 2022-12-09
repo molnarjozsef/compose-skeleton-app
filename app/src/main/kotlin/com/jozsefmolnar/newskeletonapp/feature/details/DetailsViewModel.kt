@@ -1,7 +1,11 @@
-package com.jozsefmolnar.newskeletonapp.ui.model
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
+package com.jozsefmolnar.newskeletonapp.feature.details
 
 import androidx.lifecycle.viewModelScope
 import com.jozsefmolnar.newskeletonapp.store.FooStore
+import com.jozsefmolnar.newskeletonapp.feature.common.BaseViewModel
+import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,10 +14,10 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     fooStore: FooStore,
+    private val simpleNavigator: SimpleNavigator,
 ) : BaseViewModel() {
 
     private val fooId = MutableStateFlow<Int?>(null)
@@ -27,4 +31,6 @@ class DetailsViewModel @Inject constructor(
             fooId.emit(id)
         }
     }
+
+    fun navigateUp() = simpleNavigator.navigateUp()
 }

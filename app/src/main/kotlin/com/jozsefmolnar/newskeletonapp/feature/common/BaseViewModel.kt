@@ -1,4 +1,4 @@
-package com.jozsefmolnar.newskeletonapp.ui.model
+package com.jozsefmolnar.newskeletonapp.feature.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

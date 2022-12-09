@@ -1,25 +1,42 @@
 package com.jozsefmolnar.newskeletonapp
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.jozsefmolnar.newskeletonapp.navigation.AppNavHost
+import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
+import com.jozsefmolnar.newskeletonapp.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.main_activity) {
+class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var simpleNavigator: SimpleNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContent {
+            AppTheme {
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setStatusBarColor(
+                    color = MaterialTheme.colorScheme.background,
+                    darkIcons = !isSystemInDarkTheme(),
+                )
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+                Box(
+                    Modifier.background(MaterialTheme.colorScheme.background)
+                ) {
+                    AppNavHost(simpleNavigator)
+                }
+            }
+        }
     }
-
-    override fun onSupportNavigateUp() = findNavController(R.id.navHostFragment).navigateUp()
-
 }
