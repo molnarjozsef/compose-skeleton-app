@@ -9,6 +9,7 @@ object BuildPlugins {
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kaptPlugin = "kotlin-kapt"
     const val hiltPlugin = "dagger.hilt.android.plugin"
+    const val kotlinSerializationPlugin = "plugin.serialization"
     const val versionsPlugin = "com.github.ben-manes.versions"
 
 }
@@ -48,6 +49,7 @@ object Libraries {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         }
 
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
         const val immutableCollections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
     }
 
@@ -103,7 +105,8 @@ object Libraries {
 
         object Retrofit {
             const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-            const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+            const val kotlinSerializationConverter =
+                "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
         }
     }
 
