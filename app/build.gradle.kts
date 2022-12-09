@@ -1,10 +1,10 @@
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinAndroid)
-    id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kaptPlugin)
     id(BuildPlugins.hiltPlugin)
     id(BuildPlugins.versionsPlugin) version "0.44.0"
+    kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
 }
 
 android {
@@ -74,12 +74,11 @@ dependencies {
 
     // Retrofit
     implementation(Libraries.Networking.Retrofit.core)
-    implementation(Libraries.Networking.Retrofit.moshiConverter)
+    implementation(Libraries.Networking.Retrofit.kotlinSerializationConverter)
 
-    // Kotlin Coroutines
+    // Kotlin
     implementation(Libraries.Kotlin.Coroutines.android)
-
-    // Kotlin Immutable Collections
+    implementation(Libraries.Kotlin.serialization)
     implementation(Libraries.Kotlin.immutableCollections)
 
     // Timber
