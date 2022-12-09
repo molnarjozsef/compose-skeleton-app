@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>FunctionOnlyReturningConstant:NetworkModule.kt$NetworkModule$@Provides fun provideBaseUrl()</ID>
+    <ID>Indentation:com.jozsefmolnar.newskeletonapp.util.ArticleGenerator.kt:17</ID>
+    <ID>Indentation:com.jozsefmolnar.newskeletonapp.util.ArticleGenerator.kt:18</ID>
+    <ID>Indentation:com.jozsefmolnar.newskeletonapp.util.ArticleGenerator.kt:19</ID>
+    <ID>ModifierMissing:DetailsScreen.kt$DetailsScreenContent</ID>
+    <ID>ModifierMissing:HomeScreen.kt$HomeScreenContent</ID>
+    <ID>NoUnusedImports:com.jozsefmolnar.newskeletonapp.feature.home.components.ArticleList.kt:20</ID>
+    <ID>ViewModelInjection:AppNavHost.kt$viewModel</ID>
+  </CurrentIssues>
+</SmellBaseline>

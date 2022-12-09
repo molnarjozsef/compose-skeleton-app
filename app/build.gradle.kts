@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kaptPlugin)
     id(BuildPlugins.hiltPlugin)
+    id(BuildPlugins.detektPlugin) version "1.22.0"
     id(BuildPlugins.versionsPlugin) version "0.44.0"
     kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
 }
@@ -97,6 +98,10 @@ dependencies {
     testImplementation(Libraries.Test.junit)
     androidTestImplementation(Libraries.Test.Android.junit)
 
+    // Detekt plugins
+    detektPlugins(DetektPlugins.formatting)
+    detektPlugins(DetektPlugins.twitterCompose)
+
 }
 
 fun String.isNonStable(): Boolean {
@@ -110,4 +115,17 @@ tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
     rejectVersionIf {
         candidate.version.isNonStable() && !currentVersion.isNonStable()
     }
+}
+
+detekt {
+    config = rootProject.files("detekt/config.yml")
+    baseline = rootProject.file("detekt/baseline.xml")
+    buildUponDefaultConfig = true
+
+    autoCorrect = true
+
+    ignoredBuildTypes = listOf("release")
+    ignoredFlavors = listOf("production")
+
+    basePath = projectDir.toString()
 }
