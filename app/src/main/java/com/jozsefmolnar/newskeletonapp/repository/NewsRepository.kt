@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(
+class NewsRepository @Inject constructor(
     private val newsService: NewsService,
     private val articleDao: ArticleDao,
     private val apiModelMapper: ApiModelMapper,

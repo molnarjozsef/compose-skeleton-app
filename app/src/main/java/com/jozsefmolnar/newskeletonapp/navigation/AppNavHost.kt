@@ -7,19 +7,20 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.jozsefmolnar.newskeletonapp.navigation.screen.DetailsScreen
-import com.jozsefmolnar.newskeletonapp.navigation.screen.MainScreen
-import com.jozsefmolnar.newskeletonapp.ui.model.DetailsViewModel
+import com.jozsefmolnar.newskeletonapp.feature.details.DetailsScreen
+import com.jozsefmolnar.newskeletonapp.feature.details.DetailsViewModel
+import com.jozsefmolnar.newskeletonapp.feature.home.HomeScreen
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @Composable
-fun Navigation(
-    simpleNavigator: SimpleNavigator
+fun AppNavHost(
+    simpleNavigator: SimpleNavigator,
 ) {
     val navController = androidx.navigation.compose.rememberNavController()
     NavHost(navController = navController, startDestination = Route.MainRoute.route) {
-        composable(Route.MainRoute.route) { MainScreen() }
+        composable(Route.MainRoute.route) { HomeScreen() }
+        
         composable(
             Route.DetailsRoute.route + "/{articleId}",
             arguments = listOf(
@@ -31,7 +32,11 @@ fun Navigation(
         ) { entry ->
             val viewModel = hiltViewModel<DetailsViewModel>()
             entry.arguments?.getInt("articleId")?.let { viewModel.setArticleId(it) }
-            DetailsScreen()
+
+            DetailsScreen(
+                viewModel = viewModel,
+                navigateUp = { }
+            )
         }
     }
 

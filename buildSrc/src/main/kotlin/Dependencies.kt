@@ -47,6 +47,8 @@ object Libraries {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         }
+
+        const val immutableCollections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
     }
 
     object AndroidX {
@@ -56,7 +58,6 @@ object Libraries {
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
         object Ui {
-            const val material = "com.google.android.material:material:1.7.0"
             const val activity = "androidx.activity:activity-ktx:1.3.1"
         }
     }
@@ -68,9 +69,10 @@ object Libraries {
 
         const val activity = "androidx.activity:activity-compose:1.6.1"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+        const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
 
         object Ui {
-            const val material = "androidx.compose.material:material:${Versions.compose}"
+            const val material = "androidx.compose.material3:material3:1.0.1"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 
@@ -78,6 +80,10 @@ object Libraries {
             const val navigation = "androidx.navigation:navigation-compose:2.5.3"
             const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
+    }
+
+    object Accompanist {
+        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
     }
 
     object DI {

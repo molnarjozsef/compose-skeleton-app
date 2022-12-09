@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk = AndroidSdk.compile
-    buildToolsVersion = "30.0.2"
+    buildToolsVersion = "30.0.3"
 
     defaultConfig {
         applicationId = "com.jozsefmolnar.newskeletonapp"
@@ -47,22 +47,26 @@ android {
 
 dependencies {
 
-    // Androidx
+    // AndroidX
     implementation(Libraries.AndroidX.core)
     implementation(Libraries.AndroidX.appcompat)
     implementation(Libraries.AndroidX.viewModel)
     implementation(Libraries.AndroidX.lifecycleScope)
-    implementation(Libraries.AndroidX.Ui.material)
 
+    // Compose
     implementation(Libraries.Compose.ui)
     implementation(Libraries.Compose.tooling)
     implementation(Libraries.Compose.foundation)
     implementation(Libraries.Compose.activity)
     implementation(Libraries.Compose.viewModel)
+    implementation(Libraries.Compose.lifecycle)
     implementation(Libraries.Compose.Ui.material)
     implementation(Libraries.Compose.Ui.constraintLayout)
     implementation(Libraries.Compose.Navigation.navigation)
     implementation(Libraries.Compose.Navigation.viewModel)
+
+    // Accompanist
+    implementation(Libraries.Accompanist.systemUiController)
 
     // Hilt
     implementation(Libraries.DI.Hilt.core)
@@ -74,6 +78,9 @@ dependencies {
 
     // Kotlin Coroutines
     implementation(Libraries.Kotlin.Coroutines.android)
+
+    // Kotlin Immutable Collections
+    implementation(Libraries.Kotlin.immutableCollections)
 
     // Timber
     implementation(Libraries.Common.timber)
