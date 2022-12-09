@@ -14,5 +14,4 @@ object NavigationModule {
     @Provides
     @Singleton
     fun provideNavigator() = SimpleNavigator()
-
 }

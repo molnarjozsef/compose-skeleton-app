@@ -39,7 +39,7 @@ fun DetailsScreen(
 }
 
 @Composable
-fun DetailsScreenContent(
+private fun DetailsScreenContent(
     article: Article?,
     navigateUp: () -> Unit,
     context: Context = LocalContext.current,
@@ -47,7 +47,7 @@ fun DetailsScreenContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { },
+                title = { Text("Article details") },
                 navigationIcon = {
                     IconButton(onClick = navigateUp) {
                         Icon(
@@ -126,4 +126,3 @@ fun DetailsPreview() {
         navigateUp = { },
     )
 }
-

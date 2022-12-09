@@ -16,14 +16,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
 import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun ArticleList(
-    articles: List<Article>?,
+    articles: ImmutableList<Article>?,
     onNewsItemClicked: (Article) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     if (articles != null) {
         LazyColumn(
+            modifier = modifier,
             contentPadding = PaddingValues(
                 horizontal = Sizes.Size200,
                 vertical = Sizes.Size200,
@@ -43,7 +46,7 @@ fun ArticleList(
 }
 
 @Composable
-fun ArticleListItem(
+private fun ArticleListItem(
     article: Article,
     onNewsItemClicked: (Article) -> Unit,
 ) {

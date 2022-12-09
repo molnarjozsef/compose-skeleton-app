@@ -28,5 +28,4 @@ object DataModule {
     @Singleton
     @Provides
     fun provideArticleDao(articleDatabase: ArticleDatabase) = articleDatabase.articleDao()
-
 }
