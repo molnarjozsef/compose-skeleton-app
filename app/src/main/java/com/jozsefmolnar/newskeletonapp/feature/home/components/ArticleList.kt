@@ -35,7 +35,7 @@ fun ArticleList(
                 horizontal = Sizes.Size200,
                 vertical = Sizes.Size200,
             ),
-            verticalArrangement = Arrangement.spacedBy(Sizes.Size200)
+            verticalArrangement = Arrangement.spacedBy(Sizes.Size300)
         ) {
             items(
                 items = articles
@@ -68,11 +68,27 @@ private fun ArticleListItem(
             contentScale = ContentScale.Crop
         )
 
+        Spacer(modifier = Modifier.height(Sizes.Size200))
+
+        article.source?.let {
+            Text(
+                modifier = Modifier.padding(horizontal = Sizes.Size200),
+                text = article.source,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+
+            Spacer(modifier = Modifier.height(Sizes.Size100))
+        }
+
         Text(
-            modifier = Modifier.padding(Sizes.Size200),
+            modifier = Modifier.padding(horizontal = Sizes.Size200),
             text = article.title,
             style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface,
         )
+
+        Spacer(modifier = Modifier.height(Sizes.Size200))
     }
 }
 

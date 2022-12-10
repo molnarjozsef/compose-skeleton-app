@@ -8,4 +8,6 @@ object Sizes {
     val Size100 = SizeBase
     val Size200 = SizeBase * 2
     val Size300 = SizeBase * 3
+    val Size400 = SizeBase * 4
+    val Size500 = SizeBase * 5
 }

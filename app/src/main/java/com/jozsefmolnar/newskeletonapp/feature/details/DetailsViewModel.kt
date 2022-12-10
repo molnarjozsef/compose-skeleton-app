@@ -1,10 +1,13 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.jozsefmolnar.newskeletonapp.feature.details
 
 import androidx.lifecycle.viewModelScope
+import com.jozsefmolnar.newskeletonapp.feature.common.BaseViewModel
 import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import com.jozsefmolnar.newskeletonapp.repository.NewsRepository
-import com.jozsefmolnar.newskeletonapp.ui.model.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
@@ -13,14 +16,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val repository: NewsRepository,
+    private val newsRepository: NewsRepository,
     private val simpleNavigator: SimpleNavigator,
 ) : BaseViewModel() {
 
     private var articleId = MutableStateFlow<Int?>(null)
 
     val article = articleId.filterNotNull()
-        .flatMapLatest { repository.getCachedArticle(it) }
+        .flatMapLatest { newsRepository.getCachedArticle(it) }
         .asStateFlow()
 
     fun setArticleId(id: Int) {

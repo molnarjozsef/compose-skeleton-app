@@ -53,6 +53,7 @@ dependencies {
     implementation(Libraries.AndroidX.appcompat)
     implementation(Libraries.AndroidX.viewModel)
     implementation(Libraries.AndroidX.lifecycleScope)
+    implementation(Libraries.AndroidX.preferencesDataStore)
 
     // Compose
     implementation(Libraries.Compose.ui)

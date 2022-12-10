@@ -62,6 +62,7 @@ object Libraries {
         const val core = "androidx.core:core-ktx:1.9.0"
         const val lifecycleScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val preferencesDataStore = "androidx.datastore:datastore-preferences:1.0.0"
 
         object Ui {
             const val activity = "androidx.activity:activity-ktx:1.3.1"

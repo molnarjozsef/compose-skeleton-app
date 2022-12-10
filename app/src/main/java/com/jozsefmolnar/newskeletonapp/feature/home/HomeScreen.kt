@@ -3,11 +3,13 @@
 package com.jozsefmolnar.newskeletonapp.feature.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,7 +36,10 @@ fun HomeScreenContent(
     onNewsItemClicked: (Article) -> Unit,
 ) {
     Column {
-        TopAppBar(title = { Text("News") })
+        TopAppBar(
+            title = { Text("News") },
+            windowInsets = WindowInsets(0.dp),
+        )
         ArticleList(
             articles = articles,
             onNewsItemClicked = onNewsItemClicked,

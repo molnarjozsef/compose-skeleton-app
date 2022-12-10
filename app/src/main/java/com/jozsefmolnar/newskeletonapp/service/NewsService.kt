@@ -7,9 +7,11 @@ import retrofit2.http.Query
 
 interface NewsService {
 
-    @GET("top-headlines?country=hu")
+    @GET("top-headlines")
     suspend fun getLatestNews(
         @Query("apiKey")
         apiKey: String = BuildConfig.NEWSAPI_KEY,
+        @Query("country")
+        countryCode: String
     ): NewsResponseApiModel
 }

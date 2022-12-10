@@ -1,13 +1,8 @@
-package com.jozsefmolnar.newskeletonapp.ui.model
+package com.jozsefmolnar.newskeletonapp.feature.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 
 abstract class BaseViewModel : ViewModel() {
 

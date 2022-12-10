@@ -16,12 +16,14 @@ import androidx.navigation.navArgument
 import com.jozsefmolnar.newskeletonapp.feature.details.DetailsScreen
 import com.jozsefmolnar.newskeletonapp.feature.details.DetailsViewModel
 import com.jozsefmolnar.newskeletonapp.feature.home.HomeScreen
+import com.jozsefmolnar.newskeletonapp.feature.settings.SettingsScreen
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @Composable
 fun AppNavHost(
     simpleNavigator: SimpleNavigator,
+    modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
 
@@ -39,6 +41,7 @@ fun AppNavHost(
     }
 
     Scaffold(
+        modifier = modifier,
         bottomBar = { AppNavigationBar(navController) }
     ) { contentPadding ->
         NavHost(
@@ -48,7 +51,7 @@ fun AppNavHost(
         ) {
             composable(Route.MainRoute.route) { HomeScreen() }
 
-            composable(Route.SettingsRoute.route) { Text("Settings") }
+            composable(Route.SettingsRoute.route) { SettingsScreen() }
 
             composable(
                 Route.DetailsRoute.route + "/{articleId}",
