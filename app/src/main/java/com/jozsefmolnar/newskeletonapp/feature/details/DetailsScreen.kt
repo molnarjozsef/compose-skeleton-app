@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -54,30 +56,27 @@ private fun DetailsScreenContent(
             windowInsets = WindowInsets(0.dp),
         )
         if (article != null) {
-            ArticleDetails(article = article)
+            Column(
+                Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(vertical = Sizes.Size200)
+            ) {
+                ArticleHeader(
+                    article = article,
+                    modifier = Modifier.padding(horizontal = Sizes.Size200),
+                )
+
+                ArticleImage(
+                    imageUrl = article.urlToImage,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+
+                ArticleBody(
+                    article = article,
+                    modifier = Modifier.padding(horizontal = Sizes.Size200),
+                )
+            }
         }
-    }
-}
-
-@Composable
-private fun ArticleDetails(
-    article: Article,
-) {
-    Column(Modifier.padding(vertical = Sizes.Size200)) {
-        ArticleHeader(
-            article = article,
-            modifier = Modifier.padding(horizontal = Sizes.Size200),
-        )
-
-        ArticleImage(
-            imageUrl = article.urlToImage,
-            modifier = Modifier.fillMaxWidth(),
-        )
-
-        ArticleBody(
-            article = article,
-            modifier = Modifier.padding(horizontal = Sizes.Size200),
-        )
     }
 }
 
