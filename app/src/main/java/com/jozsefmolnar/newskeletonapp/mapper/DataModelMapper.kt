@@ -13,7 +13,9 @@ class DataModelMapper @Inject constructor() : ModelMapper<ArticleDataModel, Arti
         url = model.url,
         urlToImage = model.urlToImage,
         publishedAt = model.publishedAt,
-        content = model.content
+        content = model.content,
+        author = model.author,
+        source = model.source
     )
 
     override fun mapFromDomainModel(domainModel: Article) = ArticleDataModel(
@@ -22,7 +24,9 @@ class DataModelMapper @Inject constructor() : ModelMapper<ArticleDataModel, Arti
         url = domainModel.url,
         urlToImage = domainModel.urlToImage,
         publishedAt = domainModel.publishedAt,
-        content = domainModel.content
+        content = domainModel.content,
+        author = domainModel.author,
+        source = domainModel.source,
     )
 
     fun mapToDomainModelList(models: List<ArticleDataModel>) = models.map { mapToDomainModel(it) }

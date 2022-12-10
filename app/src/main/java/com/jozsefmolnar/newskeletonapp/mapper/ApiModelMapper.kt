@@ -13,6 +13,8 @@ class ApiModelMapper @Inject constructor() : ModelMapper<ArticleApiModel, Articl
         urlToImage = model.urlToImage,
         publishedAt = model.publishedAt,
         content = model.content,
+        author = model.author?.takeIf { it.isNotBlank() },
+        source = model.source?.name?.takeIf { it.isNotBlank() }
     )
 
     override fun mapFromDomainModel(domainModel: Article) = ArticleApiModel(
@@ -23,7 +25,7 @@ class ApiModelMapper @Inject constructor() : ModelMapper<ArticleApiModel, Articl
         publishedAt = domainModel.publishedAt,
         content = domainModel.content,
         source = null,
-        author = null
+        author = domainModel.author
     )
 
     fun mapToDomainModelList(models: List<ArticleApiModel>) = models.map { mapToDomainModel(it) }

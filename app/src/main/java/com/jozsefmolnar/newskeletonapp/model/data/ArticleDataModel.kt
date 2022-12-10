@@ -13,4 +13,6 @@ data class ArticleDataModel(
     val urlToImage: String?,
     val publishedAt: String,
     val content: String?,
+    val author: String?,
+    val source: String?,
 )
