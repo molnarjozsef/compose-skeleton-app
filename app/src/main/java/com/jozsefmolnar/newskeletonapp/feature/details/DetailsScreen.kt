@@ -9,6 +9,8 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,12 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
-import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.ui.theme.Constants
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
@@ -44,27 +44,20 @@ private fun DetailsScreenContent(
     article: Article?,
     navigateUp: () -> Unit,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Article details") },
-                navigationIcon = {
-                    IconButton(onClick = navigateUp) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = null,
-                        )
-                    }
+    Column {
+        TopAppBar(
+            title = { Text("Article details") },
+            navigationIcon = {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = null,
+                    )
                 }
-            )
-        }
-    ) { contentPadding ->
+            }
+        )
         if (article != null) {
-            Column(
-                Modifier
-                    .padding(contentPadding)
-                    .padding(Sizes.Size200)
-            ) {
+            Column(Modifier.padding(Sizes.Size200)) {
                 Image(
                     painter = rememberAsyncImagePainter(article.urlToImage),
                     modifier = Modifier

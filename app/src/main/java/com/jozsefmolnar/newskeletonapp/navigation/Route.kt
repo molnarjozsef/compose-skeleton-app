@@ -3,6 +3,7 @@ package com.jozsefmolnar.newskeletonapp.navigation
 sealed class Route(val route: String) {
     object MainRoute : Route("main_route")
     object DetailsRoute : Route("details_route")
+    object SettingsRoute : Route("settings_route")
 
     fun withArgs(vararg args: Int): String {
         return buildString {
