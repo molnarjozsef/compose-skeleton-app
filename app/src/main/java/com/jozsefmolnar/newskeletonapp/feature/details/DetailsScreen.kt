@@ -13,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -42,7 +43,6 @@ fun DetailsScreen(
 private fun DetailsScreenContent(
     article: Article?,
     navigateUp: () -> Unit,
-    context: Context = LocalContext.current,
 ) {
     Scaffold(
         topBar = {
@@ -63,50 +63,73 @@ private fun DetailsScreenContent(
             Column(
                 Modifier
                     .padding(contentPadding)
-                    .padding(Sizes.Size300)
+                    .padding(Sizes.Size200)
             ) {
-                Card {
-                    Image(
-                        painter = rememberAsyncImagePainter(article.urlToImage),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(Constants.AspectRatio),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop
-                    )
-                }
+                Image(
+                    painter = rememberAsyncImagePainter(article.urlToImage),
+                    modifier = Modifier
+                        .clip(MaterialTheme.shapes.medium)
+                        .fillMaxWidth()
+                        .aspectRatio(Constants.AspectRatio),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop
+                )
 
-                Spacer(Modifier.height(Sizes.Size300))
+                Spacer(Modifier.height(Sizes.Size200))
 
-                Column {
-                    Text(
-                        text = article.title,
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-
-                    Spacer(Modifier.height(Sizes.Size200))
-
-                    Text(
-                        text = article.description ?: "DESCRIPTION",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-
-                    Spacer(Modifier.height(Sizes.Size200))
-
-                    Button(
-                        onClick = { context.openUrl(article.url) },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(
-                            text = "Open in Browser",
-                        )
-                    }
-                }
+                ArticleDetails(article = article)
             }
         }
     }
+}
+
+@Composable
+private fun ArticleDetails(
+    article: Article,
+    context: Context = LocalContext.current,
+) {
+    Column(Modifier.padding(Sizes.Size100)) {
+        article.author?.let {
+            Row {
+                Text(
+                    text = article.author,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                article.source?.let {
+                    Spacer(Modifier.width(Sizes.Size200))
+
+                    Text(text = article.source)
+                }
+            }
+            Spacer(Modifier.height(Sizes.Size200))
+        }
+
+        Text(
+            text = article.title,
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+
+        Spacer(Modifier.height(Sizes.Size200))
+
+        Text(
+            text = article.content?.substringBefore(ContentDelimiter) ?: "",
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+
+        Spacer(Modifier.height(Sizes.Size200))
+
+        Button(
+            onClick = { context.openUrl(article.url) },
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                text = "Open in Browser",
+            )
+        }
+    }
+
 }
 
 private fun Context.openUrl(url: String) {
@@ -126,3 +149,5 @@ fun DetailsPreview() {
         navigateUp = { },
     )
 }
+
+const val ContentDelimiter = "["

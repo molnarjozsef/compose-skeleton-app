@@ -2,18 +2,22 @@
 
 package com.jozsefmolnar.newskeletonapp.feature.home.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.rememberAsyncImagePainter
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
+import com.jozsefmolnar.newskeletonapp.ui.theme.Constants
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
 import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
 import kotlinx.collections.immutable.ImmutableList
@@ -52,21 +56,23 @@ private fun ArticleListItem(
 ) {
     Card(
         onClick = { onNewsItemClicked(article) },
-        shape = RoundedCornerShape(Sizes.Size200),
+        shape = MaterialTheme.shapes.medium,
     ) {
-        Column(modifier = Modifier.padding(Sizes.Size200)) {
-            Text(
-                text = article.title,
-                style = MaterialTheme.typography.headlineSmall,
-            )
+        Image(
+            painter = rememberAsyncImagePainter(article.urlToImage),
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.medium)
+                .fillMaxWidth()
+                .aspectRatio(Constants.AspectRatio),
+            contentDescription = null,
+            contentScale = ContentScale.Crop
+        )
 
-            Spacer(modifier = Modifier.height(Sizes.Size100))
-
-            Text(
-                text = article.content?.substringBefore("[") ?: "",
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
+        Text(
+            modifier = Modifier.padding(Sizes.Size200),
+            text = article.title,
+            style = MaterialTheme.typography.titleLarge,
+        )
     }
 }
 

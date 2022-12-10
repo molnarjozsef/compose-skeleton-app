@@ -40,7 +40,6 @@ fun HomeScreenContent(
         topBar = { TopAppBar(title = { Text("News") }) }
     ) { contentPadding ->
         Column(Modifier.padding(contentPadding)) {
-
             ArticleList(
                 articles = articles,
                 onNewsItemClicked = onNewsItemClicked,
