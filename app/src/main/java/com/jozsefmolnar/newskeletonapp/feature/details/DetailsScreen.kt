@@ -1,21 +1,17 @@
-@file:OptIn(ExperimentalLifecycleComposeApi::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalLifecycleComposeApi::class)
 
 package com.jozsefmolnar.newskeletonapp.feature.details
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jozsefmolnar.newskeletonapp.feature.details.components.ArticleBody
@@ -27,55 +23,39 @@ import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
 
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel,
+    viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val article by viewModel.article.collectAsStateWithLifecycle()
 
     DetailsScreenContent(
         article = article,
-        navigateUp = viewModel::navigateUp,
     )
 }
 
 @Composable
 private fun DetailsScreenContent(
     article: Article?,
-    navigateUp: () -> Unit,
 ) {
-    Column {
-        TopAppBar(
-            title = { Text("Article details") },
-            navigationIcon = {
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = null,
-                    )
-                }
-            },
-            windowInsets = WindowInsets(0.dp),
-        )
-        if (article != null) {
-            Column(
-                Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(vertical = Sizes.Size200)
-            ) {
-                ArticleHeader(
-                    article = article,
-                    modifier = Modifier.padding(horizontal = Sizes.Size200),
-                )
+    if (article != null) {
+        Column(
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = Sizes.Size200)
+        ) {
+            ArticleHeader(
+                article = article,
+                modifier = Modifier.padding(horizontal = Sizes.Size200),
+            )
 
-                ArticleImage(
-                    imageUrl = article.urlToImage,
-                    modifier = Modifier.fillMaxWidth(),
-                )
+            ArticleImage(
+                imageUrl = article.urlToImage,
+                modifier = Modifier.fillMaxWidth(),
+            )
 
-                ArticleBody(
-                    article = article,
-                    modifier = Modifier.padding(horizontal = Sizes.Size200),
-                )
-            }
+            ArticleBody(
+                article = article,
+                modifier = Modifier.padding(horizontal = Sizes.Size200),
+            )
         }
     }
 }
@@ -85,6 +65,5 @@ private fun DetailsScreenContent(
 fun DetailsPreview() {
     DetailsScreenContent(
         article = ArticleGenerator.generateArticle(),
-        navigateUp = { },
     )
 }

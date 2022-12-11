@@ -2,14 +2,9 @@
 
 package com.jozsefmolnar.newskeletonapp.feature.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -21,12 +16,13 @@ import kotlinx.collections.immutable.toPersistentList
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
+    navigateToDetails: (Int) -> Unit,
 ) {
     val articles by viewModel.items.collectAsStateWithLifecycle()
 
     HomeScreenContent(
         articles = articles?.toPersistentList(),
-        onNewsItemClicked = { viewModel.showDetails(it.id!!) }
+        onNewsItemClicked = { navigateToDetails(it.id!!) }
     )
 }
 
@@ -35,14 +31,8 @@ fun HomeScreenContent(
     articles: ImmutableList<Article>?,
     onNewsItemClicked: (Article) -> Unit,
 ) {
-    Column {
-        TopAppBar(
-            title = { Text("News") },
-            windowInsets = WindowInsets(0.dp),
-        )
-        ArticleList(
-            articles = articles,
-            onNewsItemClicked = onNewsItemClicked,
-        )
-    }
+    ArticleList(
+        articles = articles,
+        onNewsItemClicked = onNewsItemClicked,
+    )
 }

@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jozsefmolnar.newskeletonapp.model.domain.NewsCountry
 import com.jozsefmolnar.newskeletonapp.navigation.AppNavHost
-import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import com.jozsefmolnar.newskeletonapp.repository.NewsRepository
 import com.jozsefmolnar.newskeletonapp.repository.SettingsRepository
 import com.jozsefmolnar.newskeletonapp.ui.theme.AppTheme
@@ -25,9 +24,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var simpleNavigator: SimpleNavigator
 
     @Inject
     lateinit var settingsRepository: SettingsRepository
@@ -59,7 +55,7 @@ class MainActivity : ComponentActivity() {
                 Box(
                     Modifier.background(MaterialTheme.colorScheme.background)
                 ) {
-                    AppNavHost(simpleNavigator)
+                    AppNavHost()
                 }
             }
         }

@@ -1,36 +1,22 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package com.jozsefmolnar.newskeletonapp.feature.details
 
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.SavedStateHandle
+import com.jozsefmolnar.newskeletonapp.decoder.StringDecoder
 import com.jozsefmolnar.newskeletonapp.feature.common.BaseViewModel
-import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
+import com.jozsefmolnar.newskeletonapp.navigation.components.DetailsArgs
 import com.jozsefmolnar.newskeletonapp.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val newsRepository: NewsRepository,
-    private val simpleNavigator: SimpleNavigator,
+    savedStateHandle: SavedStateHandle,
+    stringDecoder: StringDecoder,
+    newsRepository: NewsRepository,
 ) : BaseViewModel() {
 
-    private var articleId = MutableStateFlow<Int?>(null)
+    private val detailsArgs: DetailsArgs = DetailsArgs(savedStateHandle, stringDecoder)
 
-    val article = articleId.filterNotNull()
-        .flatMapLatest { newsRepository.getCachedArticle(it) }
+    val article = newsRepository.getCachedArticle(detailsArgs.articleId.toInt())
         .asStateFlow()
-
-    fun setArticleId(id: Int) {
-        viewModelScope.launch {
-            articleId.emit(id)
-        }
-    }
-
-    fun navigateUp() = simpleNavigator.navigateUp()
 }
