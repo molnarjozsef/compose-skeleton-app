@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Compose Skeleton App</string>
-    <string name="title_activity_main">News App</string>
+    <string name="title_activity_main">News</string>
 </resources>
