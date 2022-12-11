@@ -1,7 +1,7 @@
 import org.gradle.api.Project
 
 fun Project.getApiKey(): String {
-    var apiKey = ""
+    var apiKey: String
 
     try {
         val apikeyPropertiesFile = rootProject.file("apikey.properties")
