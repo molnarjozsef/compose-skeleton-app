@@ -15,6 +15,14 @@ enum class NewsCountry(
     Netherlands(
         countryCode = CountryCodeNl,
         displayName = "Netherlands",
+    ),
+    Germany(
+        countryCode = CountryCodeDe,
+        displayName = "Germany",
+    ),
+    Austria(
+        countryCode = CountryCodeAt,
+        displayName = "Austria",
     );
 
     companion object {
@@ -23,6 +31,8 @@ enum class NewsCountry(
                 CountryCodeGb -> GreatBritain
                 CountryCodeHu -> Hungary
                 CountryCodeNl -> Netherlands
+                CountryCodeAt -> Austria
+                CountryCodeDe -> Germany
                 else -> null
             }
         }
@@ -32,3 +42,5 @@ enum class NewsCountry(
 private const val CountryCodeGb = "gb"
 private const val CountryCodeHu = "hu"
 private const val CountryCodeNl = "nl"
+private const val CountryCodeAt = "at"
+private const val CountryCodeDe = "de"
