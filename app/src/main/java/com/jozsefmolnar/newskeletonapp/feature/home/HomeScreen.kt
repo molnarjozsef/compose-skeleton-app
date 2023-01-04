@@ -13,20 +13,27 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.jozsefmolnar.newskeletonapp.feature.destinations.DetailsScreenDestination
 import com.jozsefmolnar.newskeletonapp.feature.home.components.ArticleList
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun HomeScreen(
+    navigator: DestinationsNavigator,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val articles by viewModel.items.collectAsStateWithLifecycle()
 
     HomeScreenContent(
         articles = articles?.toPersistentList(),
-        onNewsItemClicked = { viewModel.showDetails(it.id!!) }
+        onNewsItemClicked = { navigator.navigate(DetailsScreenDestination.invoke(it.id!!)) }
     )
 }
 

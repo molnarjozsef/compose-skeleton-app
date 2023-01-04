@@ -6,6 +6,7 @@ plugins {
     id(BuildPlugins.detektPlugin) version "1.22.0"
     id(BuildPlugins.versionsPlugin) version "0.44.0"
     kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
+    id("com.google.devtools.ksp") version "1.7.20-1.0.6"
 }
 
 android {
@@ -43,6 +44,13 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
+    }
+    applicationVariants.all {
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
     }
 }
 
@@ -103,6 +111,8 @@ dependencies {
     detektPlugins(DetektPlugins.formatting)
     detektPlugins(DetektPlugins.twitterCompose)
 
+    implementation("io.github.raamcosta.compose-destinations:core:1.7.30-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.6.30-beta")
 }
 
 fun String.isNonStable(): Boolean {
