@@ -33,7 +33,8 @@ fun HomeScreen(
 
     HomeScreenContent(
         articles = articles?.toPersistentList(),
-        onNewsItemClicked = { navigator.navigate(DetailsScreenDestination.invoke(it.id!!)) }
+        onNewsItemClicked = { navigator.navigate(DetailsScreenDestination.invoke(it.id!!)) },
+        refresh = viewModel::refreshNews
     )
 }
 
@@ -41,6 +42,7 @@ fun HomeScreen(
 fun HomeScreenContent(
     articles: ImmutableList<Article>?,
     onNewsItemClicked: (Article) -> Unit,
+    refresh: suspend () -> Unit,
 ) {
     Column {
         TopAppBar(
@@ -50,6 +52,7 @@ fun HomeScreenContent(
         ArticleList(
             articles = articles,
             onNewsItemClicked = onNewsItemClicked,
+            refresh = refresh,
         )
     }
 }

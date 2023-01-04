@@ -7,8 +7,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    newsRepository: NewsRepository,
+    private val newsRepository: NewsRepository,
 ) : BaseViewModel() {
 
     val items = newsRepository.getCachedNews().asStateFlow()
+
+    suspend fun refreshNews() = newsRepository.fetchLatestNews()
 }

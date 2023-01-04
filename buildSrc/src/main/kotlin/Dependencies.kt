@@ -79,7 +79,8 @@ object Libraries {
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
 
         object Ui {
-            const val material = "androidx.compose.material3:material3:1.0.1"
+            const val material = "androidx.compose.material:material:1.3.1"
+            const val material3 = "androidx.compose.material3:material3:1.0.1"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 

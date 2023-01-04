@@ -71,6 +71,7 @@ dependencies {
     implementation(Libraries.Compose.viewModel)
     implementation(Libraries.Compose.lifecycle)
     implementation(Libraries.Compose.Ui.material)
+    implementation(Libraries.Compose.Ui.material3)
     implementation(Libraries.Compose.Ui.constraintLayout)
     implementation(Libraries.Compose.Navigation.navigation)
     implementation(Libraries.Compose.Navigation.viewModel)
