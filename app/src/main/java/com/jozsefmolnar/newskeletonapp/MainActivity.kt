@@ -40,7 +40,9 @@ class MainActivity : ComponentActivity() {
                 settingsRepository.selectCountry(NewsCountry.Hungary)
             }
 
-            newsRepository.fetchLatestNews()
+            if (newsRepository.getCachedNews().first().isEmpty()) {
+                newsRepository.fetchLatestNews()
+            }
         }
 
         setContent {
