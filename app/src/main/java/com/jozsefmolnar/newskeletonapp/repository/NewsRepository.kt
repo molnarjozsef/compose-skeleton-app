@@ -1,8 +1,6 @@
 package com.jozsefmolnar.newskeletonapp.repository
 
 import com.jozsefmolnar.newskeletonapp.db.ArticleDao
-import com.jozsefmolnar.newskeletonapp.mapper.ApiModelMapper
-import com.jozsefmolnar.newskeletonapp.mapper.DataModelMapper
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.service.NewsService
 import com.jozsefmolnar.newskeletonapp.util.DateTimeUtils
@@ -15,16 +13,14 @@ import javax.inject.Inject
 class NewsRepository @Inject constructor(
     private val newsService: NewsService,
     private val articleDao: ArticleDao,
-    private val apiModelMapper: ApiModelMapper,
-    private val dataModelMapper: DataModelMapper,
     private val settingsRepository: SettingsRepository,
 ) {
 
     fun getCachedNews(): Flow<List<Article>> = articleDao.getAll()
-        .map { dataModelMapper.mapToDomainModelList(it) }
+        .map { dataModels -> dataModels.map { it.mapToDomainModel() } }
 
     fun getCachedArticle(id: Int): Flow<Article?> = articleDao.get(id)
-        .map { articleDataModel -> articleDataModel?.let { dataModelMapper.mapToDomainModel(it) } }
+        .map { it?.mapToDomainModel() }
 
     suspend fun fetchLatestNews() {
         try {
@@ -39,8 +35,8 @@ class NewsRepository @Inject constructor(
                     DateTimeUtils.parseArticleDateTime(article.publishedAt)?.time
                 }
 
-            val articles = apiModelMapper.mapToDomainModelList(latestArticles)
-            val articleDataModels = dataModelMapper.mapFromDomainModelList(articles)
+            val articles = latestArticles.map { it.mapToDomainModel() }
+            val articleDataModels = articles.map { it.mapToDataModel() }
             articleDao.clearAll()
             articleDao.insertAll(articleDataModels)
         } catch (e: Exception) {
