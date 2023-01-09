@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import com.jozsefmolnar.newskeletonapp.db.ArticleDatabase
+import com.jozsefmolnar.newskeletonapp.db.WeatherDatabase
 import com.jozsefmolnar.newskeletonapp.db.dataStore
 import dagger.Module
 import dagger.Provides
@@ -30,7 +31,22 @@ object DataModule {
 
     @Singleton
     @Provides
+    fun provideWeatherDatabase(@ApplicationContext context: Context): WeatherDatabase =
+        Room.databaseBuilder(
+            context,
+            WeatherDatabase::class.java,
+            WeatherDatabase.DATABASE_NAME
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+
+    @Singleton
+    @Provides
     fun provideArticleDao(articleDatabase: ArticleDatabase) = articleDatabase.articleDao()
+
+    @Singleton
+    @Provides
+    fun provideWeatherDao(weatherDatabase: WeatherDatabase) = weatherDatabase.weatherDao()
 
     @Singleton
     @Provides
