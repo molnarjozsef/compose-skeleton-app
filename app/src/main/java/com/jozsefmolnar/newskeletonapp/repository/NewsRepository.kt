@@ -1,8 +1,13 @@
 package com.jozsefmolnar.newskeletonapp.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import com.jozsefmolnar.newskeletonapp.db.ArticleDao
+import com.jozsefmolnar.newskeletonapp.db.PreferencesKeys
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.service.NewsService
+import com.jozsefmolnar.newskeletonapp.util.Constants
 import com.jozsefmolnar.newskeletonapp.util.DateTimeUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -14,6 +19,7 @@ class NewsRepository @Inject constructor(
     private val newsService: NewsService,
     private val articleDao: ArticleDao,
     private val settingsRepository: SettingsRepository,
+    private val dataStore: DataStore<Preferences>,
 ) {
 
     fun getCachedNews(): Flow<List<Article>> = articleDao.getAll()
@@ -22,7 +28,12 @@ class NewsRepository @Inject constructor(
     fun getCachedArticle(id: Int): Flow<Article?> = articleDao.get(id)
         .map { it?.mapToDomainModel() }
 
-    suspend fun fetchLatestNews() {
+    suspend fun fetchLatestNews(forced: Boolean = false) {
+        val lastRefreshedTime = dataStore.data.map { it[PreferencesKeys.NewsLastRefreshTime] }.first() ?: 0
+        if (!forced && System.currentTimeMillis() - lastRefreshedTime < Constants.OneHourInMillis) {
+            return
+        }
+
         try {
             val selectedCountries = settingsRepository.getSelectedCountries().first()
 
@@ -39,6 +50,10 @@ class NewsRepository @Inject constructor(
             val articleDataModels = articles.map { it.mapToDataModel() }
             articleDao.clearAll()
             articleDao.insertAll(articleDataModels)
+
+            dataStore.edit { preferences ->
+                preferences[PreferencesKeys.NewsLastRefreshTime] = System.currentTimeMillis()
+            }
         } catch (e: Exception) {
             Timber.e(e)
         }

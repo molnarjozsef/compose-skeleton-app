@@ -1,8 +1,6 @@
 package com.jozsefmolnar.newskeletonapp.feature.home.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,7 +23,10 @@ fun WeatherCard(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
             )
+
             weather.description?.let {
+                Spacer(Modifier.height(Sizes.Size100))
+
                 Text(
                     text = weather.description,
                     style = MaterialTheme.typography.bodyMedium,

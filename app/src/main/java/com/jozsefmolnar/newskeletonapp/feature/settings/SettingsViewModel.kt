@@ -20,7 +20,7 @@ class SettingsViewModel @Inject constructor(
     fun selectCountry(newsCountry: NewsCountry) {
         viewModelScope.launch {
             settingsRepository.selectCountry(newsCountry)
-            newsRepository.fetchLatestNews()
+            newsRepository.fetchLatestNews(forced = true)
         }
     }
 }
