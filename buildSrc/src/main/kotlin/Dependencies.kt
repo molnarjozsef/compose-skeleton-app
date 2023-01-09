@@ -79,7 +79,8 @@ object Libraries {
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
 
         object Ui {
-            const val material = "androidx.compose.material3:material3:1.0.1"
+            const val material = "androidx.compose.material:material:1.3.1"
+            const val material3 = "androidx.compose.material3:material3:1.0.1"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 
@@ -91,6 +92,7 @@ object Libraries {
 
     object Accompanist {
         const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+        const val permissions = "com.google.accompanist:accompanist-permissions:0.28.0"
     }
 
     object DI {
@@ -113,6 +115,10 @@ object Libraries {
             const val kotlinSerializationConverter =
                 "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
         }
+    }
+
+    object Gms {
+        const val LocationServices = "com.google.android.gms:play-services-location:21.0.1"
     }
 
     object Common {

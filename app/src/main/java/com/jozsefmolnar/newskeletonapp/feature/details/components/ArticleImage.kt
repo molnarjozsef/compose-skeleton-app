@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.rememberAsyncImagePainter
-import com.jozsefmolnar.newskeletonapp.ui.theme.Constants
+import com.jozsefmolnar.newskeletonapp.ui.theme.UiConstants
 
 @Composable
 fun ArticleImage(
@@ -15,7 +15,7 @@ fun ArticleImage(
 ) {
     Image(
         painter = rememberAsyncImagePainter(imageUrl),
-        modifier = modifier.aspectRatio(Constants.AspectRatio),
+        modifier = modifier.aspectRatio(UiConstants.AspectRatio),
         contentDescription = null,
         contentScale = ContentScale.Crop
     )

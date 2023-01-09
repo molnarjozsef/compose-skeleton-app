@@ -15,10 +15,12 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jozsefmolnar.newskeletonapp.model.domain.NewsCountry
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 
+@Destination
 @Composable
 fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),

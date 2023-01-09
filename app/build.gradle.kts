@@ -6,6 +6,7 @@ plugins {
     id(BuildPlugins.detektPlugin) version "1.22.0"
     id(BuildPlugins.versionsPlugin) version "0.44.0"
     kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
+    id("com.google.devtools.ksp") version "1.7.20-1.0.6"
 }
 
 android {
@@ -44,6 +45,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
+    applicationVariants.all {
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -63,12 +71,14 @@ dependencies {
     implementation(Libraries.Compose.viewModel)
     implementation(Libraries.Compose.lifecycle)
     implementation(Libraries.Compose.Ui.material)
+    implementation(Libraries.Compose.Ui.material3)
     implementation(Libraries.Compose.Ui.constraintLayout)
     implementation(Libraries.Compose.Navigation.navigation)
     implementation(Libraries.Compose.Navigation.viewModel)
 
     // Accompanist
     implementation(Libraries.Accompanist.systemUiController)
+    implementation(Libraries.Accompanist.permissions)
 
     // Hilt
     implementation(Libraries.DI.Hilt.core)
@@ -82,6 +92,9 @@ dependencies {
     implementation(Libraries.Kotlin.Coroutines.android)
     implementation(Libraries.Kotlin.serialization)
     implementation(Libraries.Kotlin.immutableCollections)
+
+    // GMS
+    implementation(Libraries.Gms.LocationServices)
 
     // Timber
     implementation(Libraries.Common.timber)
@@ -103,6 +116,8 @@ dependencies {
     detektPlugins(DetektPlugins.formatting)
     detektPlugins(DetektPlugins.twitterCompose)
 
+    implementation("io.github.raamcosta.compose-destinations:core:1.7.30-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.6.30-beta")
 }
 
 fun String.isNonStable(): Boolean {

@@ -12,10 +12,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jozsefmolnar.newskeletonapp.feature.details.components.ArticleBody
@@ -24,16 +26,25 @@ import com.jozsefmolnar.newskeletonapp.feature.details.components.ArticleImage
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
 import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel,
+    articleId: Int,
+    navigator: DestinationsNavigator,
+    viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val article by viewModel.article.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.setArticleId(articleId)
+    }
+
     DetailsScreenContent(
         article = article,
-        navigateUp = viewModel::navigateUp,
+        navigateUp = { navigator.navigateUp() },
     )
 }
 
