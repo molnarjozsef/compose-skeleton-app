@@ -92,6 +92,7 @@ object Libraries {
 
     object Accompanist {
         const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+        const val permissions = "com.google.accompanist:accompanist-permissions:0.28.0"
     }
 
     object DI {
@@ -114,6 +115,10 @@ object Libraries {
             const val kotlinSerializationConverter =
                 "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
         }
+    }
+
+    object Gms {
+        const val LocationServices = "com.google.android.gms:play-services-location:21.0.1"
     }
 
     object Common {

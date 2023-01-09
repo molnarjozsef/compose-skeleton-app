@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 fun HomeList(
     articles: ImmutableList<Article>?,
     weather: Weather?,
+    city: String?,
     onNewsItemClicked: (Article) -> Unit,
     refresh: suspend () -> Unit,
     modifier: Modifier = Modifier,
@@ -58,7 +59,10 @@ fun HomeList(
             ) {
                 weather?.let {
                     item {
-                        WeatherCard(weather = weather)
+                        WeatherCard(
+                            weather = weather,
+                            city = city,
+                        )
                     }
                 }
 

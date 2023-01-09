@@ -15,8 +15,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import com.jozsefmolnar.newskeletonapp.model.domain.Article
-import com.jozsefmolnar.newskeletonapp.ui.theme.UiConstants
 import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
+import com.jozsefmolnar.newskeletonapp.ui.theme.UiConstants
 import com.jozsefmolnar.newskeletonapp.util.ArticleGenerator
 
 @Composable

@@ -1,5 +1,6 @@
 package com.jozsefmolnar.newskeletonapp.repository
 
+import android.location.Location
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -25,14 +26,17 @@ class WeatherRepository @Inject constructor(
         .mapNotNull { it.firstOrNull() }
         .map { it.mapToDomainModel() }
 
-    suspend fun fetchWeather() {
+    suspend fun fetchWeather(location: Location) {
         val lastRefreshedTime = dataStore.data.map { it[PreferencesKeys.WeatherLastRefreshTime] }.first() ?: 0
         if (System.currentTimeMillis() - lastRefreshedTime < Constants.OneHourInMillis) {
             return
         }
 
         try {
-            val weatherApiModel = weatherService.getWeather()
+            val weatherApiModel = weatherService.getWeather(
+                latitude = location.latitude,
+                longitude = location.longitude
+            )
             val weather = weatherApiModel.mapToDomainModel()
             val weatherDataModel = weather.mapToDataModel()
 

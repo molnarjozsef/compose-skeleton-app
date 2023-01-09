@@ -12,14 +12,21 @@ import com.jozsefmolnar.newskeletonapp.ui.theme.Sizes
 @Composable
 fun WeatherCard(
     weather: Weather,
+    city: String?,
     modifier: Modifier = Modifier,
 ) {
+    val cityLabel = if (city != null) {
+        " – $city"
+    } else {
+        ""
+    }
+
     Card(
         modifier = modifier.fillMaxWidth()
     ) {
         Column(Modifier.padding(Sizes.Size200)) {
             Text(
-                text = "Temperature: ${weather.temperature}°C",
+                text = "${weather.temperature}°C$cityLabel",
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
             )

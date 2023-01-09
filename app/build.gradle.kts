@@ -78,6 +78,7 @@ dependencies {
 
     // Accompanist
     implementation(Libraries.Accompanist.systemUiController)
+    implementation(Libraries.Accompanist.permissions)
 
     // Hilt
     implementation(Libraries.DI.Hilt.core)
@@ -91,6 +92,9 @@ dependencies {
     implementation(Libraries.Kotlin.Coroutines.android)
     implementation(Libraries.Kotlin.serialization)
     implementation(Libraries.Kotlin.immutableCollections)
+
+    // GMS
+    implementation(Libraries.Gms.LocationServices)
 
     // Timber
     implementation(Libraries.Common.timber)
