@@ -23,19 +23,15 @@ enum class NewsCountry(
     Austria(
         countryCode = CountryCodeAt,
         displayName = "Austria",
+    ),
+    Czechia(
+        countryCode = CountryCodeCz,
+        displayName = "Czechia",
     );
 
     companion object {
-        fun fromCountryCode(countryCode: String): NewsCountry? {
-            return when (countryCode) {
-                CountryCodeGb -> GreatBritain
-                CountryCodeHu -> Hungary
-                CountryCodeNl -> Netherlands
-                CountryCodeAt -> Austria
-                CountryCodeDe -> Germany
-                else -> null
-            }
-        }
+        fun fromCountryCode(countryCode: String): NewsCountry? =
+            NewsCountry.values().firstOrNull { it.countryCode == countryCode }
     }
 }
 
@@ -44,3 +40,4 @@ private const val CountryCodeHu = "hu"
 private const val CountryCodeNl = "nl"
 private const val CountryCodeAt = "at"
 private const val CountryCodeDe = "de"
+private const val CountryCodeCz = "cz"
