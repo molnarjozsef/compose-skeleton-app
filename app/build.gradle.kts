@@ -1,12 +1,9 @@
-import Libraries.Common.detekt
-
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kaptPlugin)
     id(BuildPlugins.hiltPlugin)
     id(BuildPlugins.detektPlugin) version "1.22.0"
-    id(BuildPlugins.versionsPlugin) version "0.46.0"
     kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
 }
 
@@ -98,19 +95,6 @@ dependencies {
     detektPlugins(DetektPlugins.formatting)
     detektPlugins(DetektPlugins.twitterCompose)
 
-}
-
-fun String.isNonStable(): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(this)
-    return isStable.not()
-}
-
-tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
-    rejectVersionIf {
-        candidate.version.isNonStable() && !currentVersion.isNonStable()
-    }
 }
 
 detekt {
