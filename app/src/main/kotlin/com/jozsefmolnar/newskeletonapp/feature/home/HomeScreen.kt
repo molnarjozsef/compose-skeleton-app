@@ -3,7 +3,6 @@
 package com.jozsefmolnar.newskeletonapp.feature.home
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,13 +22,14 @@ import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun HomeScreen(
+    navigateToDetails: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val fooItems by viewModel.items.collectAsStateWithLifecycle()
 
     HomeScreenContent(
         fooItems = fooItems?.toPersistentList() ?: persistentListOf(),
-        onFooItemClicked = { viewModel.showDetails(it.id!!) }
+        onFooItemClicked = { foo -> navigateToDetails(foo.id) }
     )
 }
 
@@ -41,15 +41,12 @@ fun HomeScreenContent(
     Scaffold(
         topBar = { TopAppBar(title = { Text("Home") }) }
     ) { contentPadding ->
-        Column(Modifier.padding(contentPadding)) {
-
-            LazyColumn {
-                items(fooItems) { fooItem ->
-                    Text(
-                        text = fooItem.name,
-                        modifier = Modifier.clickable { onFooItemClicked(fooItem) },
-                    )
-                }
+        LazyColumn(Modifier.padding(contentPadding)) {
+            items(fooItems) { fooItem ->
+                Text(
+                    text = fooItem.name,
+                    modifier = Modifier.clickable { onFooItemClicked(fooItem) },
+                )
             }
         }
     }

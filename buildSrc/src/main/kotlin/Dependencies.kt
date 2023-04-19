@@ -1,5 +1,4 @@
 object BuildPlugins {
-
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.4.2"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
@@ -11,6 +10,12 @@ object BuildPlugins {
     const val hiltPlugin = "dagger.hilt.android.plugin"
     const val kotlinSerializationPlugin = "plugin.serialization"
     const val versionsPlugin = "com.github.ben-manes.versions"
+    const val detektPlugin = "io.gitlab.arturbosch.detekt"
+}
+
+object DetektPlugins {
+    const val formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0"
+    const val twitterCompose = "com.twitter.compose.rules:detekt:0.0.26"
 }
 
 object AndroidSdk {
@@ -98,6 +103,7 @@ object Libraries {
     object Common {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
         const val coilCompose = "io.coil-kt:coil-compose:2.3.0"
+        const val detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.18.1"
     }
 
     object Test {

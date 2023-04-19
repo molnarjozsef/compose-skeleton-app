@@ -9,19 +9,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jozsefmolnar.newskeletonapp.R
 import com.jozsefmolnar.newskeletonapp.model.domain.Foo
 
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel,
+    navigateUp: () -> Unit,
+    viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val foo by viewModel.foo.collectAsStateWithLifecycle()
 
     DetailsScreenContent(
         foo = foo,
-        navigateUp = viewModel::navigateUp,
+        navigateUp = navigateUp,
     )
 }
 
@@ -46,8 +48,7 @@ fun DetailsScreenContent(
         }
     ) { contentPadding ->
         Box(Modifier.padding(contentPadding)) {
-            Text(text = foo?.name ?: "")
+            Text(text = foo?.name ?: "Empty")
         }
     }
 }
-
