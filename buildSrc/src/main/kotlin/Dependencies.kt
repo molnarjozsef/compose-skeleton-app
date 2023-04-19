@@ -1,6 +1,6 @@
 object BuildPlugins {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.3.1"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.4.2"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 
@@ -11,7 +11,6 @@ object BuildPlugins {
     const val hiltPlugin = "dagger.hilt.android.plugin"
     const val kotlinSerializationPlugin = "plugin.serialization"
     const val versionsPlugin = "com.github.ben-manes.versions"
-
 }
 
 object AndroidSdk {
@@ -21,19 +20,15 @@ object AndroidSdk {
 }
 
 object Versions {
-    const val minsdk = 23
-    const val targetsdk = 31
-
-    const val kotlin = "1.7.20"
+    const val kotlin = "1.8.20"
     const val coroutines = "1.6.4"
 
-    const val compose = "1.3.1"
-    const val lifecycle = "2.5.1"
+    const val compose = "1.4.2"
+    const val lifecycle = "2.6.1"
 
+    const val hilt = "2.45"
 
-    const val hilt = "2.44.2"
-
-    const val room = "2.4.3"
+    const val room = "2.5.1"
 
     const val retrofit = "2.9.0"
 
@@ -49,19 +44,15 @@ object Libraries {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         }
 
-        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
         const val immutableCollections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.5.1"
-        const val core = "androidx.core:core-ktx:1.9.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.6.1"
+        const val core = "androidx.core:core-ktx:1.10.0"
         const val lifecycleScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
-        object Ui {
-            const val activity = "androidx.activity:activity-ktx:1.3.1"
-        }
     }
 
     object Compose {
@@ -69,13 +60,12 @@ object Libraries {
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
 
-        const val activity = "androidx.activity:activity-compose:1.6.1"
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
-        const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
+        const val activity = "androidx.activity:activity-compose:1.7.1"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
+        const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycle}"
 
         object Ui {
             const val material = "androidx.compose.material3:material3:1.0.1"
-            const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 
         object Navigation {
@@ -85,14 +75,12 @@ object Libraries {
     }
 
     object Accompanist {
-        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.30.1"
     }
 
-    object DI {
-        object Hilt {
-            const val core = "com.google.dagger:hilt-android:${Versions.hilt}"
-            const val compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
-        }
+    object Hilt {
+        const val core = "com.google.dagger:hilt-android:${Versions.hilt}"
+        const val compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
     }
 
     object Room {
@@ -101,25 +89,22 @@ object Libraries {
         const val annotationProcessor = "androidx.room:room-compiler:${Versions.room}"
     }
 
-    object Networking {
-
-        object Retrofit {
-            const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-            const val kotlinSerializationConverter =
-                "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
-        }
+    object Retrofit {
+        const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        const val kotlinSerializationConverter =
+            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
     }
 
     object Common {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
-        const val coilCompose = "io.coil-kt:coil-compose:2.2.2"
+        const val coilCompose = "io.coil-kt:coil-compose:2.3.0"
     }
 
     object Test {
         const val junit = "junit:junit:4.13.2"
 
         object Android {
-            const val junit = "androidx.test.ext:junit-ktx:1.1.4"
+            const val junit = "androidx.test.ext:junit-ktx:1.1.5"
             const val core = "androidx.arch.core:core-testing:2.1.0"
             const val runner = "androidx.test:runner:${Versions.testRunner}"
             const val rules = "androidx.test:rules:${Versions.testRunner}"

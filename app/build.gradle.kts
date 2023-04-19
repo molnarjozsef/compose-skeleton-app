@@ -3,23 +3,22 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kaptPlugin)
     id(BuildPlugins.hiltPlugin)
-    id(BuildPlugins.versionsPlugin) version "0.44.0"
+    id(BuildPlugins.versionsPlugin) version "0.46.0"
     kotlin(BuildPlugins.kotlinSerializationPlugin) version Versions.kotlin
 }
 
 android {
+    namespace = "com.jozsefmolnar.newskeletonapp"
     compileSdk = AndroidSdk.compile
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
-        applicationId = "com.jozsefmolnar.newskeletonapp"
+        applicationId = "com.jozsefmolnar.skeletonapp"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-
-        buildConfigField("String", "FOO_API_KEY", project.getApiKey())
     }
 
 
@@ -30,18 +29,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
-        dataBinding = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
 }
 
@@ -61,7 +56,6 @@ dependencies {
     implementation(Libraries.Compose.viewModel)
     implementation(Libraries.Compose.lifecycle)
     implementation(Libraries.Compose.Ui.material)
-    implementation(Libraries.Compose.Ui.constraintLayout)
     implementation(Libraries.Compose.Navigation.navigation)
     implementation(Libraries.Compose.Navigation.viewModel)
 
@@ -69,12 +63,12 @@ dependencies {
     implementation(Libraries.Accompanist.systemUiController)
 
     // Hilt
-    implementation(Libraries.DI.Hilt.core)
-    kapt(Libraries.DI.Hilt.compiler)
+    implementation(Libraries.Hilt.core)
+    kapt(Libraries.Hilt.compiler)
 
     // Retrofit
-    implementation(Libraries.Networking.Retrofit.core)
-    implementation(Libraries.Networking.Retrofit.kotlinSerializationConverter)
+    implementation(Libraries.Retrofit.core)
+    implementation(Libraries.Retrofit.kotlinSerializationConverter)
 
     // Kotlin
     implementation(Libraries.Kotlin.Coroutines.android)
