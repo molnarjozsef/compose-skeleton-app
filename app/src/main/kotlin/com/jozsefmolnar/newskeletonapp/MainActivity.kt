@@ -10,16 +10,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jozsefmolnar.newskeletonapp.navigation.AppNavHost
-import com.jozsefmolnar.newskeletonapp.navigation.SimpleNavigator
 import com.jozsefmolnar.newskeletonapp.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var simpleNavigator: SimpleNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 Box(
                     Modifier.background(MaterialTheme.colorScheme.background)
                 ) {
-                    AppNavHost(simpleNavigator)
+                    AppNavHost()
                 }
             }
         }
